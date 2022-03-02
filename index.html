@@ -29,6 +29,8 @@
     <script src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
 
     <!-- text/markdown isn't a standard, but has an informational rfc @ <https://tools.ietf.org/html/rfc7763> -->
+    
+    <p><a href="github.com/hwzhang9/testmd/" target="_blank">github/testmd</a></p>
     <div style="display: flex;">
         <textarea id="markdowntext" class="markdown-content"></textarea>
         <button style="height: 20px;" id="btn">conversion</button>
@@ -106,14 +108,16 @@
             tasklists: true,
             extensions: [myext]
         });
+        var markdowntext = document.getElementById("markdowntext");
         // html = converter.makeHtml(text);
-        document.getElementById("markdowntext").value = document.getElementById("md").innerHTML;
+        markdowntext.value = document.getElementById("md").innerHTML;
         // console.log(document.getElementById("markdowntext").value);
-        var text = document.getElementById("markdowntext").value;
+        var text = markdowntext.value;
         var html = converter.makeHtml(text);
         // console.log(converter, text);
         document.getElementById("markdownPreview").innerHTML = html;
         // document.body.innerHTML = html;
+        markdowntext.addEventListener('input', btnAction, true);
         document.getElementById('btn').addEventListener('click', btnAction, true);
         function btnAction() {
             console.log(1);
