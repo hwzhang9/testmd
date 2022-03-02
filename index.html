@@ -10,6 +10,11 @@
         body {
             scroll-behavior: smooth;
         }
+        .markdown-content{
+            width: 45%;
+            height: 500px;
+            margin-right: 50px;
+        }
 
         /* More about scroll-behavior @ <https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-behavior> */
     </style>
@@ -23,53 +28,53 @@
     <script src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
 
     <!-- text/markdown isn't a standard, but has an informational rfc @ <https://tools.ietf.org/html/rfc7763> -->
+    <div style="display: flex;">
+        <textarea id="markdowntext" class="markdown-content" />
+        <div id="markdownPreview" class="markdown-content" />
+    </div>
+    
     <script id="md" type="text/markdown">
         # 第一个 Case
 
-# 产品手册指南
+        # 产品手册指南
 
-[如何更新本手册？](#如何更新本手册？)
+        [如何更新本手册？](#如何更新本手册？)
 
-[如何生成HTML版本的手册？](#如何生成HTML版本的手册？)
+        [如何生成HTML版本的手册？](#如何生成HTML版本的手册？)
 
-[如何生成PDF版本的手册？](#如何生成PDF版本的手册？)
+        [如何生成PDF版本的手册？](#如何生成PDF版本的手册？)
 
-[test](#test)
-
-
-![avatar](./1.jpeg)
-
-推荐生成 HTML 格式的文档浏览。
-
-## 如何更新本手册？
-
-1. 修改要更新的章节对应的 md 文件
-2. 执行根目录下的 bash 文件：`./merge-man.sh`，将最新的各章节内容合并到`mnos-user-manual.md`中
-3. 将各个 md 文件修改更新到 git 仓库
-
-## 如何生成HTML版本的手册？
-
-1. 修改要更新的章节对应的 md 文件
-2. 执行根目录下的 bash 文件：`./merge-man.sh`，将最新的各章节内容合并到`mnos-user-manual.md`中
-3. 将各个 md 文件修改更新到 git 仓库
+        [test](#test)
 
 
-## 如何生成PDF版本的手册？
+        ![avatar](./1.jpeg)
 
-1. 修改要更新的章节对应的 md 文件
-2. 执行根目录下的 bash 文件：`./merge-man.sh`，将最新的各章节内容合并到`mnos-user-manual.md`中
-3. 将各个 md 文件修改更新到 git 仓库
+        推荐生成 HTML 格式的文档浏览。
 
-## test
+        ## 如何更新本手册？
 
-1. 修改要更新的章节对应的 md 文件
-2. 执行根目录下的 bash 文件：`./merge-man.sh`，将最新的各章节内容合并到`mnos-user-manual.md`中
-3. 将各个 md 文件修改更新到 git 仓库
+        1. 修改要更新的章节对应的 md 文件
+        2. 执行根目录下的 bash 文件：`./merge-man.sh`，将最新的各章节内容合并到`mnos-user-manual.md`中
+        3. 将各个 md 文件修改更新到 git 仓库
+
+        ## 如何生成HTML版本的手册？
+
+        1. 修改要更新的章节对应的 md 文件
+        2. 执行根目录下的 bash 文件：`./merge-man.sh`，将最新的各章节内容合并到`mnos-user-manual.md`中
+        3. 将各个 md 文件修改更新到 git 仓库
 
 
+        ## 如何生成PDF版本的手册？
 
+        1. 修改要更新的章节对应的 md 文件
+        2. 执行根目录下的 bash 文件：`./merge-man.sh`，将最新的各章节内容合并到`mnos-user-manual.md`中
+        3. 将各个 md 文件修改更新到 git 仓库
 
+        ## test
 
+        1. 修改要更新的章节对应的 md 文件
+        2. 执行根目录下的 bash 文件：`./merge-man.sh`，将最新的各章节内容合并到`mnos-user-manual.md`中
+        3. 将各个 md 文件修改更新到 git 仓库
 
 
     </script>
@@ -84,9 +89,10 @@
         //     .use(window.markdownItTocDoneRight);
         // document.body.innerHTML = md.render(document.getElementById("md").innerHTML);
         var converter = new showdown.Converter(),
-            text = document.getElementById("md").innerHTML,
+            text = document.getElementById("markdowntext").innerHTML,
             html = converter.makeHtml(text);
-        document.body.innerHTML = html;
+        document.getElementById("markdownPreview").innerHTML = html;
+        // document.body.innerHTML = html;
 
 
     </script>
